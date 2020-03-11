@@ -21,7 +21,7 @@
       </ul>
 
       <ul class="list-group">
-        <div *ngIf="!onlyOdd">
+        <!-- <div *ngIf="!onlyOdd">
           <li
             class="list-group-item"
             *ngFor="let even of evenNumbers"
@@ -30,9 +30,37 @@
               backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
             }"
           >
-            {{ even }}
+            {{ even }}..........with *ngIf
+          </li>
+        </div> -->
+        <div *appUnless="onlyOdd">
+          <li
+            class="list-group-item"
+            *ngFor="let even of evenNumbers"
+            [ngClass]="{ odd: even % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+          >
+            {{ even }}..........with our own structural directive *unless
           </li>
         </div>
+      </ul>
+      <ul class="list-group">
+        <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li
+              class="list-group-item"
+              *ngFor="let even of evenNumbers"
+              [ngClass]="{ odd: even % 2 !== 0 }"
+              [ngStyle]="{
+                backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+              }"
+            >
+              {{ even }}..........with ng-tenplate & ngIf property binding
+            </li>
+          </div>
+        </ng-template>
       </ul>
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
@@ -43,4 +71,10 @@
   <p [appBetterHighlight]="'red'" [defaultColor]="'yellow'">
     Style me with a better Directive!
   </p>
+  <div [ngSwitch]="value">
+    <p *ngSwitchCase="5">Value = 5</p>
+    <p *ngSwitchCase="10">Value = 10</p>
+    <p *ngSwitchCase="100">Value = 100</p>
+    <p *ngSwitchDefault>Value is default</p>
+  </div>
 </div>
