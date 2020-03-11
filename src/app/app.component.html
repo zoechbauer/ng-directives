@@ -21,7 +21,7 @@
       </ul>
 
       <ul class="list-group">
-        <div *ngIf="!onlyOdd">
+        <!-- <div *ngIf="!onlyOdd">
           <li
             class="list-group-item"
             *ngFor="let even of evenNumbers"
@@ -31,6 +31,18 @@
             }"
           >
             {{ even }}..........with *ngIf
+          </li>
+        </div> -->
+        <div *appUnless="onlyOdd">
+          <li
+            class="list-group-item"
+            *ngFor="let even of evenNumbers"
+            [ngClass]="{ odd: even % 2 !== 0 }"
+            [ngStyle]="{
+              backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+          >
+            {{ even }}..........with our own structural directive *unless
           </li>
         </div>
       </ul>
