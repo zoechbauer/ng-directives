@@ -30,9 +30,25 @@
               backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
             }"
           >
-            {{ even }}
+            {{ even }}..........with *ngIf
           </li>
         </div>
+      </ul>
+      <ul class="list-group">
+        <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li
+              class="list-group-item"
+              *ngFor="let even of evenNumbers"
+              [ngClass]="{ odd: even % 2 !== 0 }"
+              [ngStyle]="{
+                backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+              }"
+            >
+              {{ even }}..........with ng-tenplate & ngIf property binding
+            </li>
+          </div>
+        </ng-template>
       </ul>
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
